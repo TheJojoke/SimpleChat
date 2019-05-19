@@ -1,0 +1,17 @@
+{
+    "name": "SLtoolset",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "cordova-plugin-compat": "^1.2.0",
+        "cordova-plugin-geolocation": "^2.4.3",
+        "cordova-plugin-screen-orientation": "^3.0.1",
+        "es6-promise-plugin": "^4.2.2"
+    },
+    "cordova": {
+        "plugins": {
+            "cordova-plugin-geolocation": {},
+            "cordova-plugin-screen-orientation": {}
+        }
+    }
+}
