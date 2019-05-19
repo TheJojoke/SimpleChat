@@ -1,0 +1,143 @@
+<html>
+    <head>
+        <title>Darkchat</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-auth.js"></script> 
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-messaging.js"></script>
+<script type="text/javascript">
+var config = {
+    apiKey: "AIzaSyBeaZsv8BasCPGVVIE0BF4Fos9S6JorIv4",
+    authDomain: "funweb210.firebaseapp.com",
+    databaseURL: "https://funweb210.firebaseio.com",
+    projectId: "funweb210",
+    storageBucket: "funweb210.appspot.com",
+    messagingSenderId: "19664987666"
+  };
+  firebase.initializeApp(config);
+  var grn=prompt("Nombre de sala de chat:","Sala general");
+  var group="/chat/"+grn;
+var database = firebase.database();
+var nddl = 2 ;
+var ref = firebase.database().ref(group
+);
+function send() {
+if (nickname.value!="" && txt.value!="")
+ {
+ var date=Date();
+var msg = "<div class=\"chatbox\"><span>"+ nickname.value.split("<").join("&lt") + ":</span><br /><big>" + txt.value.split("<").join("&lt") +"</big><br><small><i>"+date+"</i></small></div>" ;
+document.getElementById("txt").value = "" ;
+document.getElementById("nickname").style.display = "none" ; 
+firebase.database().ref(group).push({ message: msg }).key;}}ref.on("child_added" , function(data) {
+var dmsg = data.val();
+tabl.innerHTML = document.getElementById("tabl").innerHTML+dmsg.message;}, 
+function(error) 
+{
+alert(error.code)
+});
+function type()
+{
+    var a = document.getElementById("wrapper");
+}
+</script>
+<style type="text/css">
+body {
+    background:url("https://conceptodefinicion.de/wp-content/uploads/2016/11/Cosmos2.jpg");
+    color:white;
+}
+
+#wrapper {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    position: absolute;
+}
+input {
+    border-radius:25px;
+    height:50px;
+    border: 2px solid white;
+    width:85%;
+    font-size:24px;
+    outline: none;
+    color: black;
+    background-color: skyblue;
+}
+#nickname
+{
+    padding: 0px;
+}
+#table {
+    
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 50px;
+    background:transparent;
+    overflow: hidden;
+}
+#tabl {
+    height:100%;
+    width:100%;
+    font-weight:200;
+    overflow-y:auto;
+    overflow-x: hidden;
+    
+}
+#sendbtn{
+    position:absolute;
+    right:0;
+    bottom:0;
+    border-radius:50%;
+    height:60px;
+    width:60px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 21px;
+    outline: none;
+    background-color:red;
+}
+.chatbox {
+    margin:15px;
+    padding:5px;
+    color: white;
+    font-size:20px;
+    background-color:grey;
+    max-width:85%;
+    border-radius:0 30px 20px 20px;
+    font-family:verdana;
+}
+span{
+color:silver;
+font-size:22px;
+font-family:times new roman;
+font-weight:bold;
+}
+#form {
+    width: 100vw;
+    position: absolute;
+    bottom: 0;
+}
+</style> 
+    </head>
+    <body>
+    <div id="wrapper">
+    
+    <div id="account">
+        <div id="table">
+            <div id="tabl"></div>
+        </div>
+        
+        <div id="form">
+        <input id="nickname" placeholder="Pone tu nombre clave aca" type="text">
+        <input id="txt" maxlength="70" placeholder="Mensaje" type="text">
+        <button onclick="send()" id="sendbtn">C.S</button>
+        </div>
+    </div>
+    
+    </div>
+    </body>
+</html>
